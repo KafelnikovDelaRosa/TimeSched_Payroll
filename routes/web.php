@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebcamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome', ['names' => Employee::all()
+    ]);
+})->name('webcam.index');
+
+
+Route::post('/webcam', [WebcamController::class, 'store'])
+    ->name('webcam.capture');
