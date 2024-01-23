@@ -5,28 +5,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Time Scheduler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     @vite('resources/css/app.css')
 </head>
 
-<body class="text-center">
+<body class="text-center bg-slate-100">
     <form method="POST" action="{{ route('webcam.capture') }}" class="flex flex-col">
         @csrf
         <div class="flex justify-center w-full">
-            <div class="">
+            <div>
                 <h1 class="text-2xl font-semibold mt-4">Time Scheduler</h1>
                 <div id="my_camera"></div>
                 <input type="hidden" name="image" class="image-tag">
             </div>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center mt-4">
             <div class="flex flex-col">
-                <select name="name" id="name"
+                <select name="employee" id="employee"
                     class="mb-4 rounded border text-center text-slate-700 border-slate-300 py-1.5 px-2.5 bg-slate-50 shadow-sm">
-                    <option value="default">Your Name</option>
+                    <option value="default-employee">Your Employee ID</option>
                     @foreach ($names as $name)
-                        <option value="{{ $name->name }}">{{ $name->name }}</option>
+                        <option value="{{ $name->employee_id }}">{{ $name->employee_id }}</option>
                     @endforeach
+                </select>
+                <select name="activity" id="activity"
+                    class="mb-4 rounded border text-center text-slate-700 border-slate-300 py-1.5 px-2.5 bg-slate-50 shadow-sm">
+                    <option value="default-activity">Choose Activity</option>
                 </select>
                 <button
                     class="text-slate-50 rounded border border-slate-300 py-1.5 px-2.5 bg-blue-700 hover:bg-blue-600 shadow-sm"
@@ -39,8 +44,8 @@
 
     <script language="JavaScript">
         Webcam.set({
-            width: 450,
-            height: 380,
+            width: 490,
+            height: 350,
             image_format: 'jpeg',
             jpeg_quality: 90,
         });
@@ -50,7 +55,8 @@
         function take_snapshot() {
             Webcam.snap(function(data_uri) {
                 $(".image-tag").val(data_uri);
-                //document.getElementById('name').innerHTML = '<img src="' + data_uri + '"/>';
+                document.getElementById('name').innerHTML = '<img src="' + data_uri + '"/>';
+                console.log('WORKING');
             });
         }
     </script>
