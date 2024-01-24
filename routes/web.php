@@ -3,6 +3,7 @@
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebcamController;
+use App\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\WebcamController;
 |
 */
 Route::get('/', function () {
-    return view('welcome', ['names' => Employee::all()
+    return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
     ]);
 })->name('webcam.index');
 

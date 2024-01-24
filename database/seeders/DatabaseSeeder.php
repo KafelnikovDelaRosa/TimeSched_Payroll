@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         Employee::factory(30)->create();
         Attendance::factory(300)->create();
-        Activity::factory()->create();
+        
+        foreach (Activity::$activity as $activityName) {
+            // Check if the activity already exists in the database
+            $existingActivity = Activity::where('activity', $activityName)->first();
+
+            // If the activity doesn't exist, create a new record
+            if (!$existingActivity) {
+                Activity::create(['activity' => $activityName]);
+            }
+        }
     }
 }

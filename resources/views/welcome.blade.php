@@ -32,6 +32,9 @@
                 <select name="activity" id="activity"
                     class="mb-4 rounded border text-center text-slate-700 border-slate-300 py-1.5 px-2.5 bg-slate-50 shadow-sm">
                     <option value="default-activity">Choose Activity</option>
+                    @foreach ($activities as $activity)
+                        <option value="{{ $activity->activity }}">{{ $activity->activity }}</option>
+                    @endforeach
                 </select>
                 <button
                     class="text-slate-50 rounded border border-slate-300 py-1.5 px-2.5 bg-blue-700 hover:bg-blue-600 shadow-sm"
@@ -56,8 +59,9 @@
             Webcam.snap(function(data_uri) {
                 $(".image-tag").val(data_uri);
                 document.getElementById('name').innerHTML = '<img src="' + data_uri + '"/>';
-                console.log('WORKING');
             });
+
+            console.log(employee);
         }
     </script>
 </body>
