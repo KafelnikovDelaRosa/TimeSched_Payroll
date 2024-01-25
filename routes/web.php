@@ -15,10 +15,8 @@ use App\Models\Activity;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
-    ]);
-})->name('webcam.index');
+Route::get('/', [WebcamController::class, 'index'])
+    ->name('webcam.index');
 
 
 Route::post('/webcam', [WebcamController::class, 'store'])

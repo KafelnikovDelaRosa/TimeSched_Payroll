@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Activity;
+use App\Models\Employee;
 
 class WebcamController extends Controller
 {
@@ -13,7 +15,8 @@ class WebcamController extends Controller
      */
     public function index()
     {
-        //
+        return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
+    ]);
     }
 
     /**
@@ -50,6 +53,9 @@ class WebcamController extends Controller
 
         // Store image in the storage
         Storage::disk('local')->put($file, $image_base64);
+
+        return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
+        ]);
     }
 
     /**
