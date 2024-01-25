@@ -11,7 +11,7 @@
 </head>
 
 <body class="text-center bg-slate-100">
-    <form method="POST" action="{{ route('webcam.capture') }}" class="flex flex-col">
+    <form method="POST" action="{{ route('webcam.capture') }}" id="captureForm" class="flex flex-col">
         @csrf
         <div class="flex justify-center w-full">
             <div>
@@ -20,6 +20,7 @@
                 <input type="hidden" name="image" class="image-tag">
             </div>
         </div>
+
         <div class="flex justify-center mt-4">
             <div class="flex flex-col">
                 <select name="employee" id="employee"
@@ -38,7 +39,7 @@
                 </select>
                 <button
                     class="text-slate-50 rounded border border-slate-300 py-1.5 px-2.5 bg-blue-700 hover:bg-blue-600 shadow-sm"
-                    type=submit onClick="take_snapshot()">
+                    type=submit onclick="take_snapshot()">
                     Capture
                 </button>
             </div>
@@ -56,12 +57,10 @@
         Webcam.attach('#my_camera');
 
         function take_snapshot() {
+
             Webcam.snap(function(data_uri) {
                 $(".image-tag").val(data_uri);
-                document.getElementById('name').innerHTML = '<img src="' + data_uri + '"/>';
             });
-
-            console.log(employee);
         }
     </script>
 </body>

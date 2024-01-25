@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,13 +35,20 @@ class WebcamController extends Controller
         [
             'image.required' => 'Please capture an image',
         ]);
+
         $img = $request->image;
         $folderPath = "attendance/";
         $image_parts = explode(";base64,", $img);
         $image_base64 = base64_decode($image_parts[1]);
-        $fileName = uniqid() . '.png';
+        $dateTime = Carbon::now("Asia/Manila");
+        
+        $fileName = $request->employee . ' ' . $request->activity  . ' '. $dateTime . '.png';
 
+        // Replace whitespaces with underscore to make the file name more readable 
+        $fileName = str_replace(' ', '_', $fileName);
         $file = $folderPath . $fileName;
+
+        // Store image in the storage
         Storage::disk('local')->put($file, $image_base64);
     }
 
