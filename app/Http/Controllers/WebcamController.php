@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Activity;
+use App\Models\Attendance;
 use App\Models\Employee;
+use Illuminate\Support\Facades\DB;
 
 class WebcamController extends Controller
 {
@@ -34,9 +36,13 @@ class WebcamController extends Controller
     {
         $request->validate([
             'image' => 'required',
+            'employee' => 'required',
+            'activity' => 'required'
         ],
         [
             'image.required' => 'Please capture an image',
+            'employee.required' => 'Please select an employee',
+            'activity.required' => 'Please select an activity',
         ]);
 
         $img = $request->image;
@@ -53,6 +59,12 @@ class WebcamController extends Controller
 
         // Store image in the storage
         Storage::disk('local')->put($file, $image_base64);
+        Attendance::create([
+            'employee_id' => $request->employee,
+            'activity' => $request->activity,
+            'time' => $dateTime,
+            'image' => $fileName,
+        ]);
 
         return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
         ]);

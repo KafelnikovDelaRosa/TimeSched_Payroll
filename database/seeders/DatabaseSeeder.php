@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Employee::factory(30)->create();
-        Attendance::factory(300)->create();
         
         foreach (Activity::$activity as $activityName) {
             // Check if the activity already exists in the database

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Time Scheduler</title>
+    <title>Activity Logger</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     @vite('resources/css/app.css')
@@ -16,7 +16,7 @@
         @csrf
         <div class="flex justify-center w-full">
             <div>
-                <h1 class="text-2xl font-semibold mt-4">Time Scheduler</h1>
+                <h1 class="text-2xl font-semibold mt-4">Activity Logger</h1>
                 <div id="my_camera"></div>
                 <input type="hidden" name="image" class="image-tag">
             </div>

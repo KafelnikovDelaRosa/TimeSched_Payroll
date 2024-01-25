@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
 
-            $table->dateTime('clock_in');
-            $table->dateTime('clock_out');
+            $table->string('employee_id');
+            $table->string('activity');
+            $table->dateTime('time');
+            $table->string('image');
 
             $table->timestamps();
         });

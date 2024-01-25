@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Attendance;
 
 class Employee extends Model
 {
@@ -19,4 +20,8 @@ class Employee extends Model
         'Painter',
         'Roofer'
     ];
+
+    public function employeeAttendance() {
+        return $this->hasMany(Attendance::class);
+    }
 }
