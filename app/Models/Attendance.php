@@ -19,4 +19,8 @@ class Attendance extends Model
     public function employeeID() {
         return $this->belongsTo(Employee::class);
     }
+
+    public function activity() {
+        return $this->belongsTo(Activity::class);
+    }
 }

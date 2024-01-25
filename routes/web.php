@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebcamController;
-use App\Models\Activity;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,13 @@ Route::get('/', [WebcamController::class, 'index'])
 
 Route::post('/webcam', [WebcamController::class, 'store'])
     ->name('webcam.capture');
+
+Route::get('/admin', [AuthController::class,'index'])
+    ->name('admin.index');
+
+
+Route::get('/admin/login', [AuthController::class,'login'])
+    ->name('admin.login');
+
+Route::get('/admin/logs', [AdminController::class,'logs'])
+->name('admin.logs');
