@@ -46,7 +46,7 @@ class WebcamController extends Controller
         ]);
 
         $img = $request->image;
-        $folderPath = "attendance/";
+        $folderPath = "public/";
         $image_parts = explode(";base64,", $img);
         $image_base64 = base64_decode($image_parts[1]);
         $dateTime = Carbon::now("Asia/Manila");

@@ -5,6 +5,7 @@ use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,5 @@ Route::get('/admin', [AuthController::class,'index'])
 Route::get('/admin/login', [AuthController::class,'login'])
     ->name('admin.login');
 
-Route::get('/admin/logs', [AdminController::class,'logs'])
+Route::get('/admin/logs', [LogController::class,'show'])
 ->name('admin.logs');

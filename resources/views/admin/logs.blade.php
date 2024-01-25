@@ -9,12 +9,24 @@
 </head>
 
 <body class="bg-slate-100">
-
+    <table class="">
+        <thead>
+            <th>Employee ID</th>
+            <th>Activity</th>
+            <th>Time</th>
+            <th>Image</th>
+        </thead>
+        <tbody>
+            @foreach ($logs as $log)
+                <tr>
+                    <td>{{ $log->employee_id }}</td>
+                    <td>{{ $log->activity }}</td>
+                    <td>{{ $log->time }}</td>
+                    <td><img class="w-40" src="{{ asset('storage/' . $log->image) }}" alt="employee_image_log"></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
-<ul>
-    @foreach ($logs as $log)
-        <li>{{ $log->employee_id }}</li>
-    @endforeach
-</ul>
 
 </html>
