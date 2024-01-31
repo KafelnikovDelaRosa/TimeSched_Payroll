@@ -3,9 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LogController;
+use App\Models\Attendance;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +17,11 @@ use App\Http\Controllers\LogController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [WebcamController::class, 'index'])
+Route::get('/', [LogController::class, 'index'])
     ->name('webcam.index');
 
 
-Route::post('/webcam', [WebcamController::class, 'store'])
+Route::post('/webcam', [LogController::class, 'store'])
     ->name('webcam.capture');
 
 Route::get('/admin', [AuthController::class,'index'])
@@ -33,3 +33,4 @@ Route::get('/admin/login', [AuthController::class,'login'])
 
 Route::get('/admin/logs', [LogController::class,'show'])
 ->name('admin.logs');
+

@@ -9,9 +9,9 @@
 </head>
 
 <body class="bg-slate-100">
-    <table class="">
+    <table class="table-auto w-full text-center">
         <thead>
-            <th>Employee ID</th>
+            <th class="p-5">Employee ID</th>
             <th>Activity</th>
             <th>Time</th>
             <th>Image</th>
@@ -22,7 +22,8 @@
                     <td>{{ $log->employee_id }}</td>
                     <td>{{ $log->activity }}</td>
                     <td>{{ $log->time }}</td>
-                    <td><img class="w-40" src="{{ asset('storage/' . $log->image) }}" alt="employee_image_log"></td>
+                    <td class="flex justify-center py-2.5"><img class="h-20" src="{{ asset('storage/' . $log->image) }}"
+                            alt="employee_image_log"></td>
                 </tr>
             @endforeach
         </tbody>
