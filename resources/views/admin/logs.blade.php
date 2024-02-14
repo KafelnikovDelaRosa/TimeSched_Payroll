@@ -13,13 +13,13 @@
 
 <body>
     <x-bladewind::table searchable="true" hover_effect="true" divider="thin" search_placeholder="Search by id or name"
-        columns="image" :action_icons="$action_icons" :data="$logs" compact="true" />
+        columns="image, created_at, updated_at" :action_icons="$action_icons" :data="$logs" compact="true" />
 
     <x-bladewind.modal type="info" name="show-activity-log" title="">
-        <div class="mb-6" id="employee-id">Employee ID:</div>
-        <div class="mb-6">Employee Name:</div>
-        <div class="mb-6" id="activity"></div>
-        <div class="mb-6">Time:</div>
+        <div class="mb-4 employee_id" id="employee-id">Employee ID:</div>
+        <div class="mb-4 activity" id="activity">Activity:</div>
+        <div class="mb-4 time">Time:</div>
+        <img class="mb-4 employee-image" src="">
     </x-bladewind.modal>
 
     <x-bladewind::modal name="delete-user" type="error" title="Confirm Log Deletion">
@@ -28,11 +28,29 @@
     </x-bladewind::modal>
 
     <script>
-        //TODO : display log and employee details (Employee ID, Employee Name, Employee Title, Time, Activity, Log Image)
-        showActivityLog = (employee_id) => {
-            showModal('show-activity-log');
-            domEl('.bw-show-activity-log #employee-id').innerText = `Employee Log: ${employee_id}`;
-            domEl('.bw-show-activity-log #activity').innerText = `Activity: ${logs}`;
+        // TODO : Add Employee Name
+        showActivityLog = (id) => {
+            fetch(`/admin/logs/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    showModal('show-activity-log');
+                    domEl('.bw-show-activity-log .modal-title').innerText = `Activity Log #${id}`;
+                    domEl('.employee_id').innerText = `Employee ID: ${data.employee_id}`;
+                    domEl('.activity').innerText = `Activity: ${data.activity}`;
+                    const formattedTime = new Date(data.time).toLocaleString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                        hour12: true
+                    });
+                    domEl('.time').innerText = `Time: ${formattedTime}`;
+
+                    domEl('.employee-image').src = `/storage/${data.image}`;
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         // Delete user 

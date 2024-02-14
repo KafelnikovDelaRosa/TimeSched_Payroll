@@ -53,9 +53,13 @@ class LogController extends Controller
      * Display the specified resource.
      */
     // TODO : Check for fixes for open details
-    public function show($employee_id)
+    public function show($id)
     {
-        $log = Attendance::findOrFail($employee_id);
+        $log = Attendance::findOrFail($id);
+
+        if (!$log) {
+            $this->error();
+        }
         return response()->json($log);
     }
 

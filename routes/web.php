@@ -28,7 +28,7 @@ Route::get('/admin/logs', [LogController::class,'index'])
     ->name('admin.logs');
     
 Route::get('admin/logs/{id}', [LogController::class,'show'])
-    ->name('admin.show');
+    ->name('logs.show');
 
 Route::post('admin/logs/remove/{id}',[LogController::class,'destroy'])
     ->name('admin.delete');
