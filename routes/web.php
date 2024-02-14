@@ -28,7 +28,7 @@ Route::get('/admin/logs', [LogController::class,'index'])
     ->name('admin.logs');
     
 Route::get('admin/logs/{id}', [LogController::class,'show'])
-    ->name('admin.show');
+    ->name('logs.show');
 
 Route::get('/webcam', [CaptureController::class, 'index'])
     ->name('webcam');
