@@ -22,11 +22,23 @@
         <div class="mb-6">Time:</div>
     </x-bladewind.modal>
 
+    <x-bladewind::modal name="delete-user" type="error" title="Confirm User Deletion">
+        Are you really sure you want to delete log <b class="title"></b>?
+        This action cannot be reversed.
+    </x-bladewind::modal>
+
     <script>
+        // TODO : display log and employee details (Employee ID, Employee Name, Employee Title, Time, Activity, Log Image)
         showActivityLog = (employee_id) => {
             showModal('show-activity-log');
             domEl('.bw-show-activity-log .modal-title').innerText = `Activity ID: ${employee_id}`;
             domEl('.bw-show-activity-log #activity').innerText = `Activity: ${logs}`;
+        }
+
+        // Delete user 
+        deleteUser = (employee_id) => {
+            showModal('delete-user');
+            domEl('.bw-delete-user .title').innerText = `${employee_id}`;
         }
     </script>
 

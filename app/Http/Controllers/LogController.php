@@ -14,6 +14,7 @@ class LogController extends Controller
     /**
      * Display a listing of the resource.
      */
+     // TODO : Check for fixes for open details
     public function index()
     {
         $logs = Attendance::all();
@@ -28,7 +29,7 @@ class LogController extends Controller
 
         $action_icons = [
             "icon: magnifying-glass | tip: Open Details | color:green | click:showActivityLog('{id}')",
-            "icon:trash | tip: Delete Log | color:red | click:redirect('/employee/show')'))"
+            "icon:trash | color:red | click:deleteUser({employee_id})",
         ];
 
         return view(
@@ -89,6 +90,7 @@ class LogController extends Controller
     /**
      * Display the specified resource.
      */
+    // TODO : Check for fixes for open details
     public function show($employee_id)
     {
         $log = Attendance::findOrFail($employee_id);
