@@ -1,5 +1,34 @@
+// TODO : TODO LOG LIST
+// TODO : Integrate Delete Log Function
+// TODO : Integrate Users(FOR DEBATE)
+// TODO : Integrate Log In and Log Out
+// TODO : Integrate Leave Form Submission
+// TODO : Integrate Page for Approving of Leaves
 
-This is where we add todos that do not have files yet
+// TODO : Integrate Recording of Logs of Users
+// TODO : Create PDF Generator for Record Logs Per Week and Per Month(or every 2 weeks)
 
 
-// TODO : 
+If we will integrate user accounts won't this destroy the process of having a centralized logging system?
+
+If tig iisa ng user account edi every individual need pa mag log in sa computer para ma log lang attendance nila?
+
+Same sa pag request ng leave. Mas maganda ba if centralized nalang din pero kasama sa pag request yung pag pasa ng 
+form kasama mga details ng user para isang page lang binubuksan pero dynamic yung data nalang?
+
+
+Main Modules
+ - Log Capturing
+ - Leave Form Submission
+
+Admin Modules
+ - Dashboard
+ - Logs
+ - Leaves
+ - Employee Management (Add User, Edit User, Delete User)
+
+
+
+DONE
+ - Log Capturing
+ - Logs (admin)

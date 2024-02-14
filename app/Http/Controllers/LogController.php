@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Attendance;
-use App\Models\Activity;
-use App\Models\Employee;
 
 class LogController extends Controller
 {
@@ -51,40 +47,7 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'required',
-            'employee' => 'required',
-            'activity' => 'required'
-        ],
-        [
-            'image.required' => 'Please capture an image',
-            'employee.required' => 'Please select an employee',
-            'activity.required' => 'Please select an activity',
-        ]);
-
-        $img = $request->image;
-        $folderPath = "public/";
-        $image_parts = explode(";base64,", $img);
-        $image_base64 = base64_decode($image_parts[1]);
-        $dateTime = Carbon::now("Asia/Manila");
-        
-        $fileName = $request->employee . ' ' . $request->activity  . ' '. $dateTime . '.png';
-
-        // Replace whitespaces with underscore to make the file name more readable 
-        $fileName = str_replace(' ', '_', $fileName);
-        $file = $folderPath . $fileName;
-
-        // Store image in the storage
-        Storage::disk('local')->put($file, $image_base64);
-        Attendance::create([
-            'employee_id' => $request->employee,
-            'activity' => $request->activity,
-            'time' => $dateTime,
-            'image' => $fileName,
-        ]);
-
-        return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()
-        ]);
+        //
     }
 
     /**
@@ -116,6 +79,7 @@ class LogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // TODO : Integrate delete log function
     public function destroy(string $id)
     {
         //

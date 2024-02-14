@@ -22,7 +22,7 @@
         <div class="mb-6">Time:</div>
     </x-bladewind.modal>
 
-    <x-bladewind::modal name="delete-user" type="error" title="Confirm User Deletion">
+    <x-bladewind::modal name="delete-user" type="error" title="Confirm Log Deletion">
         Are you really sure you want to delete log <b class="title"></b>?
         This action cannot be reversed.
     </x-bladewind::modal>

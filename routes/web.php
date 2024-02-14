@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CaptureController;
 use App\Http\Controllers\LogController;
-use App\Models\Attendance;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +15,20 @@ use App\Models\Attendance;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [LogController::class, 'index'])
-    ->name('webcam.index');
-
-
-Route::post('/webcam', [LogController::class, 'store'])
-    ->name('webcam.capture');
-
 Route::get('/admin', [AuthController::class,'index'])
-    ->name('admin.index');
-
+    ->name('admin.index'); 
 
 Route::get('/admin/login', [AuthController::class,'login'])
     ->name('admin.login');
 
+Route::get('/', [LogController::class, 'index'])
+    ->name('webcam.index');    
+    
 Route::get('/admin/logs', [LogController::class,'index'])
-->name('admin.logs');
-
+    ->name('admin.logs');
+    
 Route::get('admin/logs/{id}', [LogController::class,'show'])
-->name('admin.show');
+    ->name('admin.show');
+
+Route::post('/webcam', [CaptureController::class, 'store'])
+        ->name('webcam.capture');
