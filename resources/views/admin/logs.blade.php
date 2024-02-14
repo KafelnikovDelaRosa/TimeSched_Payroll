@@ -13,10 +13,10 @@
 
 <body>
     <x-bladewind::table searchable="true" hover_effect="true" divider="thin" search_placeholder="Search by id or name"
-        exclude_columns="image" :action_icons="$action_icons" :data="$logs" compact="true" />
+        columns="image" :action_icons="$action_icons" :data="$logs" compact="true" />
 
     <x-bladewind.modal type="info" name="show-activity-log" title="">
-        <div class="mb-6">Employee ID:</div>
+        <div class="mb-6" id="employee-id">Employee ID:</div>
         <div class="mb-6">Employee Name:</div>
         <div class="mb-6" id="activity"></div>
         <div class="mb-6">Time:</div>
@@ -28,10 +28,10 @@
     </x-bladewind::modal>
 
     <script>
-        // TODO : display log and employee details (Employee ID, Employee Name, Employee Title, Time, Activity, Log Image)
+        //TODO : display log and employee details (Employee ID, Employee Name, Employee Title, Time, Activity, Log Image)
         showActivityLog = (employee_id) => {
             showModal('show-activity-log');
-            domEl('.bw-show-activity-log .modal-title').innerText = `Activity ID: ${employee_id}`;
+            domEl('.bw-show-activity-log #employee-id').innerText = `Employee Log: ${employee_id}`;
             domEl('.bw-show-activity-log #activity').innerText = `Activity: ${logs}`;
         }
 
@@ -40,6 +40,8 @@
             showModal('delete-user');
             domEl('.bw-delete-user .title').innerText = `${employee_id}`;
         }
+
+        function handleUserDelete(employee_id)
     </script>
 
 </body>

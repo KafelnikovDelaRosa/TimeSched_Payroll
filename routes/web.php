@@ -30,6 +30,9 @@ Route::get('/admin/logs', [LogController::class,'index'])
 Route::get('admin/logs/{id}', [LogController::class,'show'])
     ->name('admin.show');
 
+Route::post('admin/logs/remove/{id}',[LogController::class,'destroy'])
+    ->name('admin.delete');
+
 Route::get('/webcam', [CaptureController::class, 'index'])
     ->name('webcam');
 

@@ -19,13 +19,12 @@ class LogController extends Controller
 
         foreach ($logs as $log) {
             $logAttributes = $log->getAttributes();
-
             $logData[] = $logAttributes;
         }
 
         $action_icons = [
-            "icon: magnifying-glass | tip: Open Details | color:green | click:showActivityLog('{id}')",
-            "icon:trash | color:red | click:deleteUser({employee_id})",
+            "icon: magnifying-glass | tip: Open Details | color:green | click:showActivityLog(`{employee_id}`)",
+            "icon:trash | color:red | click:deleteUser({id})",
         ];
 
         return view(
@@ -83,5 +82,8 @@ class LogController extends Controller
     public function destroy(string $id)
     {
         //
+        Attendance::where('id',$id)
+        ->delete();
+        return redirect('/admin/logs');
     }
 }
