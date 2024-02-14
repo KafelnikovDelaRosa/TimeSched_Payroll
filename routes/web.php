@@ -34,4 +34,4 @@ Route::get('/webcam', [CaptureController::class, 'index'])
     ->name('webcam');
 
 Route::post('/webcam', [CaptureController::class, 'store'])
-        ->name('webcam.capture');
+    ->name('webcam.capture');

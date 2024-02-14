@@ -13,7 +13,7 @@ class LogController extends Controller
      // TODO : Check for fixes for open details
     public function index()
     {
-        $logs = Attendance::all();
+        $logs = Attendance::all()->reverse();
 
         $logData = [];
 
