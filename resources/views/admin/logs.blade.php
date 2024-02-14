@@ -6,28 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin - Employee Logs</title>
     @vite('resources/css/app.css')
+    <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
 </head>
 
-<body class="bg-slate-100">
-    <table class="table-auto w-full text-center">
-        <thead>
-            <th class="p-5">Employee ID</th>
-            <th>Activity</th>
-            <th>Time</th>
-            <th>Image</th>
-        </thead>
-        <tbody>
-            @foreach ($logs as $log)
-                <tr>
-                    <td>{{ $log->employee_id }}</td>
-                    <td>{{ $log->activity }}</td>
-                    <td>{{ $log->time }}</td>
-                    <td class="flex justify-center py-2.5"><img class="h-20" src="{{ asset('storage/' . $log->image) }}"
-                            alt="employee_image_log"></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+<body>
+    <x-bladewind::table searchable="true" hover_effect="true" divider="thin" search_placeholder="Search by id or name"
+        exclude_columns="image" :action_icons="$action_icons" :data="$logs" compact="true" />
+
+    <x-bladewind.modal type="info" name="show-activity-log" title="">
+        <div class="mb-6">Employee ID:</div>
+        <div class="mb-6">Employee Name:</div>
+        <div class="mb-6" id="activity"></div>
+        <div class="mb-6">Time:</div>
+    </x-bladewind.modal>
+
+    <script>
+        showActivityLog = (employee_id) => {
+            showModal('show-activity-log');
+            domEl('.bw-show-activity-log .modal-title').innerText = `Activity ID: ${employee_id}`;
+            domEl('.bw-show-activity-log #activity').innerText = `Activity: ${logs}`;
+        }
+    </script>
+
 </body>
 
 </html>

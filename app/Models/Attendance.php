@@ -15,7 +15,7 @@ class Attendance extends Model
         "time",
         "image"
     ];
-
+    
     public function employeeID() {
         return $this->belongsTo(Employee::class);
     }

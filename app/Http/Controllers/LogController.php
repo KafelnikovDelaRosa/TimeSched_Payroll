@@ -16,7 +16,25 @@ class LogController extends Controller
      */
     public function index()
     {
-        return view('welcome', ['names' => Employee::all(), 'activities' => Activity::all()]);
+        $logs = Attendance::all();
+
+        $logData = [];
+
+        foreach ($logs as $log) {
+            $logAttributes = $log->getAttributes();
+
+            $logData[] = $logAttributes;
+        }
+
+        $action_icons = [
+            "icon: magnifying-glass | tip: Open Details | color:green | click:showActivityLog('{id}')",
+            "icon:trash | tip: Delete Log | color:red | click:redirect('/employee/show')'))"
+        ];
+
+        return view(
+            'admin.logs', ['logs' => $logData,
+            'action_icons' => $action_icons
+        ]);
     }
 
     /**
@@ -71,10 +89,10 @@ class LogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($employee_id)
     {
-        return view('admin.logs', ['logs' => Attendance::latest()->paginate(10)
-    ]);
+        $log = Attendance::findOrFail($employee_id);
+        return response()->json($log);
     }
 
     /**

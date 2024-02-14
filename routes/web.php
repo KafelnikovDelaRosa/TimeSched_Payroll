@@ -31,6 +31,8 @@ Route::get('/admin', [AuthController::class,'index'])
 Route::get('/admin/login', [AuthController::class,'login'])
     ->name('admin.login');
 
-Route::get('/admin/logs', [LogController::class,'show'])
+Route::get('/admin/logs', [LogController::class,'index'])
 ->name('admin.logs');
 
+Route::get('admin/logs/{id}', [LogController::class,'show'])
+->name('admin.show');
